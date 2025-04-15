@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧮 Prediction Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --accent: #00C9A7;
+      --dark: #1B1B2F;
+      --light: #F4F4F4;
+      --glass: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right top, #0f0c29, #302b63, #24243e);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    /* Loader styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .spinner {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid var(--accent);
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hide-loader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .result-box {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      margin-top: 3rem;
+    }
+
+    .result-box:hover {
+      transform: scale(1);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ffdd57;
+    }
+
+    .prediction {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2rem;
+    }
+
+    .bttn {
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: white;
+      padding: 14px 40px;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .bttn:hover {
+      background: linear-gradient(135deg, #00bfa5, #5f5fff);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .footer {
+      background: #0f0c29;
+      color: #888;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer a {
+      color: #00c9a7;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+.result-box p{
+      font-size: 1rem;
+text-align: left;
+}
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+   /* @media screen and (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .prediction {
+        font-size: 1.8rem;
+      }
+
+      .bttn {
+        font-size: 1rem;
+        padding: 12px 30px;
+      }
+    }*/
+
+/* Small screens: phones (up to 600px) */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 1.2rem;
+  }
+
+  .result-box {
+    padding: 1.2rem;
+    margin-top: 2rem;
+  }
+
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .prediction {
+    font-size: 1.2rem;
+  }
+
+  .bttn {
+    font-size: 0.9rem;
+    padding: 10px 24px;
+  }
+
+  .result-box p {
+    font-size: 0.9rem;
+text-align: left;
+  }
+
+  .footer {
+    font-size: 0.7rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Medium screens: tablets and small laptops (601px to 992px) */
+@media screen and (min-width: 601px) and (max-width: 992px) {
+  .container {
+    padding: 1.6rem;
+  }
+
+  .result-box {
+    padding: 1.6rem;
+    margin-top: 2.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .prediction {
+   font-size: 1.5rem;
+  }
+
+  .bttn {
+    font-size: 1rem;
+    padding: 12px 36px;
+  }
+
+  .result-box p {
+    font-size: 1rem;
+text-align: left;
+  }
+
+  .footer {
+    font-size: 0.85rem;
+  }
+}
+
+/* Large screens: desktops (above 992px) */
+@media screen and (min-width: 993px) {
+  .container {
+    padding: 2rem;
+  }
+
+  .result-box {
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .prediction {
+    font-size: 2.2rem;
+  }
+
+  .bttn {
+    font-size: 1.1rem;
+    padding: 14px 40px;
+  }
+
+  .result-box p {
+    font-size: 1rem;
+text-align: left;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="result-box">
+<p> Based on the input data you’ve provided, the model has calculated an estimated yearly spending amount for the customer. This prediction reflects their potential financial contribution, considering their engagement with the app, website usage, session behavior, and membership duration.</p><br>
+
+      <h1>📢 Predicted Yearly Amount Spent</h1>
+      <div class="prediction">{{ prediction_text }}</div>
+      <a href="/" class="bttn">🔙 Back to Home</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    🚀 Built with ❤️ by <strong>Bhupender Singh</strong> | <a href="https://linkedin.com/in/bhupender-singh296" target="_blank">LinkedIn</a> | Data Source: Kaggle
+  </div>
+
+  <!-- JavaScript for loader -->
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      document.body.classList.add("loaded");
+      setTimeout(() => {
+        loader.classList.add("hide-loader");
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

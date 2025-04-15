@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📈 E-Commerce Sales Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --accent: #00C9A7;
+      --dark: #1B1B2F;
+      --light: #F4F4F4;
+      --glass: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right top, #0f0c29, #302b63, #24243e);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #00c9a7, #6c63ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #cccccc;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .description {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 0 30px rgba(0,0,0,0.25);
+    }
+
+    .description:hover {transform: scale(1);
+      box-shadow: 0 0 20px var(--accent);
+}
+    .description h4 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #ffdd57;
+    }
+
+    .description li {
+      margin: 0.6rem 0;
+      list-style: none;
+    }
+
+    .description li::before {
+      content: '✨ ';
+      color: var(--accent);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .input-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .input-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .input-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      background: #ffffff;
+      color: #222;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--accent);
+    }
+
+    .submit {
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .bttn {
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: white;
+      padding: 14px 40px;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .bttn:hover {
+      background: linear-gradient(135deg, #00bfa5, #5f5fff);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .footer {
+      background: #0f0c29;
+      color: #888;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer a {
+      color: #00c9a7;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+/* Small screens (mobile) */
+@media screen and (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .input-card h2{
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .bttn {
+    padding: 12px 30px;
+        font-size: 0.9rem;
+  }
+
+  form {
+    grid-template-columns: 1fr; /* Stack input fields vertically */
+    gap: 1rem;
+font-size: 0.8rem;
+  }
+
+input[type="number"] {
+font-size: 0.8rem;
+}
+
+  .footer {
+    font-size: 0.7rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Medium screens (tablet) */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .input-card {
+    padding: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .bttn {
+    padding: 14px 35px;
+    font-size: 1.1rem;
+  }
+
+  form {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for inputs */
+    gap: 1.5rem;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large screens (desktop) */
+@media screen and (min-width: 1025px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+  }
+
+  .description {
+    padding: 1.5rem;
+  }
+
+  .input-card {
+    padding: 1.2rem;
+  }
+
+  .bttn {
+    padding: 16px 40px;
+    font-size: 1.2rem;
+  }
+
+  form {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for inputs */
+    gap: 2rem;
+  }
+
+  .footer {
+    font-size: 1rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="hero">
+      <h1>📊 E-Commerce Customer Spending Prediction</h1>
+      <p>Welcome to your smart AI-based prediction app 🚀  
+      Get accurate yearly spending forecasts based on real user behaviors.</p>
+    </div>
+
+    <div class="description">
+      <h4>📌  Input the following customer behavior and profile data to generate a yearly spending prediction using the model:</h4>
+      <ul>
+        <li><strong>📱 Time on App:</strong> Average number of minutes the customer spends daily on the mobile application. This reflects app engagement and mobile usage behavior.</li>
+        <li><strong>🖥️ Time on Website:</strong> Average duration (in minutes) the customer spends browsing the company’s website. This shows web-based interaction levels.</li>
+        <li><strong>🧠 Avg. Session Length:</strong> Time spent by the customer during personalized or interactive sessions with the platform, indicating depth of usage.</li>
+        <li><strong>⏳ Length of Membership:</strong> Total number of years the customer has been a member or subscribed to the platform, indicating loyalty and customer lifetime value.</li>
+      </ul>
+    </div>
+
+    <form action="{{ url_for('predict') }}" method="post">
+      <div class="input-card">
+        <h2>📱 Time on Mobile App</h2>
+        <input type="number" name="app_time" placeholder="Min: 30" required min="30" step="0.01">
+      </div>
+      <div class="input-card">
+        <h2>🖥️ Time on Website</h2>
+        <input type="number" name="web_time" placeholder="Min: 30" required min="30" step="0.01">
+      </div>
+      <div class="input-card">
+        <h2>🧠 Avg. Session Length</h2>
+        <input type="number" name="session_len" placeholder="Min: 30" required min="30" step="0.01">
+      </div>
+      <div class="input-card">
+        <h2>⏳ Membership Length</h2>
+        <input type="number" name="membership_len" placeholder="Min: 0.25" required min="0.25" step="0.01">
+      </div>
+      <div class="submit">
+        <button type="submit" class="bttn">🔮 Predict Now</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="footer">
+    🚀 Built with ❤️ by <strong>Bhupender Singh</strong> | <a href="https://linkedin.com/in/bhupender-singh296" target="_blank">LinkedIn</a> | Data Source: Kaggle
+  </div>
+
+</body>
+</html>

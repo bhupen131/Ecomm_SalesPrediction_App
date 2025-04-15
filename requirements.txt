@@ -1,0 +1,6 @@
+Flask==3.0.3
+gunicorn==21.2.0
+pandas==2.2.2      # (if your app uses pandas)
+numpy==1.26.4      # (if needed)
+requests==2.31.0   # (if you need to make HTTP requests)
+scikit-learn==1.4.2  # Or whatever version you are using locally
